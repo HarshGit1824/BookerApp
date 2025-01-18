@@ -2,6 +2,8 @@
 
 import { useEffect, useReducer } from "react";
 import { booksReducer } from "@/lib/reducer";
+import { initialBooks } from "@/lib/sample-data";
+
 import { LampDemo } from "@/components/ui/lamp";
 import Header from "@/components/Header";
 import AddBook from "@/components/AddBook";
@@ -10,7 +12,7 @@ import BookList from "@/components/BookList";
 // Helper function to get books from localStorage
 const getBooksFromLocalStorage = () => {
   const savedBooks = localStorage.getItem("books");
-  return savedBooks ? JSON.parse(savedBooks) : [];
+  return savedBooks ? JSON.parse(savedBooks) : initialBooks;
 };
 // Helper function to save books to localStorage
 const saveBooksToLocalStorage = (books: any[]) => {
