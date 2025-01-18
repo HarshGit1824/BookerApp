@@ -13,14 +13,19 @@ const getBooksFromLocalStorage = () => {
   return savedBooks ? JSON.parse(savedBooks) : initialBooks;
 };
 // Helper function to set books to localStorage
-const saveBooksToLocalStorage = (books: any[]) => {
+const saveBooksToLocalStorage = (books: Book[]) => {
   localStorage.setItem("books", JSON.stringify(books));
 };
 
-function Home() {
-  const [books, dispatch] = useReducer(booksReducer, [], () =>
-    getBooksFromLocalStorage()
-  );
+function Page() {
+  const ISSERVER = typeof window === "undefined";
+  const [books, dispatch] = useReducer(booksReducer, [], () => {
+    if (!ISSERVER) {
+      return getBooksFromLocalStorage();
+    } else {
+      return [];
+    }
+  });
   useEffect(() => {
     saveBooksToLocalStorage(books);
   }, [books]);
@@ -36,4 +41,4 @@ function Home() {
     </>
   );
 }
-export default Home;
+export default Page;
