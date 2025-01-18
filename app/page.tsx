@@ -3,9 +3,6 @@
 import { useEffect, useReducer } from "react";
 import { booksReducer } from "@/lib/reducer";
 import { initialBooks } from "@/lib/sample-data";
-
-import { LampDemo } from "@/components/ui/lamp";
-import Header from "@/components/Header";
 import AddBook from "@/components/AddBook";
 import BookList from "@/components/BookList";
 import Hero from "@/components/Hero";
@@ -31,7 +28,6 @@ function Home() {
     <>
       <Hero />
 
-      <LampDemo title="Booker &mdash; rank books to read." />
       <hr className="mb-10" />
       <main className="max-w-7xl mx-auto px-2 text-2xl">
         <AddBook dispatch={dispatch} />
