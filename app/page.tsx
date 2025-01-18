@@ -1,5 +1,7 @@
 "use client";
 
+import { Book } from "@/types/interfaces";
+import { initialBooks } from "@/lib/sampleData";
 import { useReducer } from "react";
 import { booksReducer } from "@/lib/reducer";
 import { LampDemo } from "@/components/ui/lamp";
@@ -8,20 +10,7 @@ import AddBook from "@/components/AddBook";
 import BookList from "@/components/BookList";
 
 function Home() {
-  const [books, dispatch] = useReducer(booksReducer, [
-    {
-      id: "1",
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      rating: 4,
-    },
-    {
-      id: "2",
-      title: "The Catcher in the Rye",
-      author: "J.D. Salinger",
-      rating: 5,
-    },
-  ]);
+  const [books, dispatch] = useReducer(booksReducer, initialBooks as Book[]);
 
   return (
     <>

@@ -19,11 +19,17 @@ function BookSingle({ book, dispatch }: any) {
         <p className="text-lg font-semibold">{book.title}</p>
       </CardContent>
       <CardFooter className="flex gap-1 items-center">
-        <Button variant="outline">
-          <ThumbsUp onClick={() => dispatch({ type: "like", payload: book.id })} />
+        <Button
+          variant="outline"
+          onClick={() => dispatch({ type: "like", payload: book.id })}
+        >
+          <ThumbsUp />
         </Button>
-        <Button variant="outline">
-          <ThumbsDown  onClick={() => dispatch({ type: "dislike", payload: book.id })}/>
+        <Button
+          variant="outline"
+          onClick={() => dispatch({ type: "dislike", payload: book.id })}
+        >
+          <ThumbsDown />
         </Button>
         <Button variant="destructive">
           <BadgeMinus />
