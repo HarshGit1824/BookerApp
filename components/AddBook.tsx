@@ -2,6 +2,8 @@
 import { FormEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ArrowDown10, Cross } from "lucide-react";
+
 function AddBook() {
   const [bookValue, setBookValue] = useState("");
   const [authorValue, setAuthorValue] = useState("");
@@ -15,7 +17,7 @@ function AddBook() {
     setAuthorValue("");
   };
   return (
-    <form className="max-w-96 mx-auto" onSubmit={handleFormSubmit}>
+    <form className="max-w-96 mx-auto mb-10" onSubmit={handleFormSubmit}>
       <Input
         type="text"
         placeholder="Add a book"
@@ -31,9 +33,11 @@ function AddBook() {
         value={authorValue}
       />
       <div className="flex gap-2">
-        <Button type="submit">Add</Button>
+        <Button type="submit">
+          <Cross /> Add
+        </Button>
         <Button type="submit" variant="secondary">
-          Sort
+          <ArrowDown10 /> Sort
         </Button>
       </div>
     </form>

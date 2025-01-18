@@ -1,4 +1,12 @@
+import BookSingle from "@/components/BookSingle";
 function BookList() {
-    return <h1>BookList</h1>;
+  return (
+    <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
+      <BookSingle />
+      <BookSingle />
+      <BookSingle />
+      <BookSingle />
+    </div>
+  );
   }
   export default BookList;
