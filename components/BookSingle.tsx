@@ -20,10 +20,10 @@ function BookSingle({ book, dispatch }: any) {
       </CardContent>
       <CardFooter className="flex gap-1 items-center">
         <Button variant="outline">
-          <ThumbsUp onClick={() => dispatch("like", book.id)} />
+          <ThumbsUp onClick={() => dispatch({ type: "like", payload: book.id })} />
         </Button>
         <Button variant="outline">
-          <ThumbsDown  onClick={() => dispatch("dislike", book.id)}/>
+          <ThumbsDown  onClick={() => dispatch({ type: "dislike", payload: book.id })}/>
         </Button>
         <Button variant="destructive">
           <BadgeMinus />
