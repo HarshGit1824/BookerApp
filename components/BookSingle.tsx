@@ -8,22 +8,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
-function BookSingle() {
+function BookSingle({ book, dispatch }: any) {
   return (
     <Card className="w-80">
       <CardHeader>
-        <CardTitle>Joy McCullough</CardTitle>
-        <CardDescription>Appreciation: 0</CardDescription>
+        <CardTitle>{book.author}</CardTitle>
+        <CardDescription>{book.rating}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-lg font-semibold">The Story of my Life</p>
+        <p className="text-lg font-semibold">{book.title}</p>
       </CardContent>
       <CardFooter className="flex gap-1 items-center">
         <Button variant="outline">
-          <ThumbsUp />
+          <ThumbsUp onClick={() => dispatch("like", book.id)} />
         </Button>
         <Button variant="outline">
-          <ThumbsDown />
+          <ThumbsDown  onClick={() => dispatch("dislike", book.id)}/>
         </Button>
         <Button variant="destructive">
           <BadgeMinus />

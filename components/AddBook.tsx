@@ -1,46 +1,69 @@
 "use client";
-import { FormEvent, useState } from "react";
+import {  FormEvent, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowDown10, Cross } from "lucide-react";
 
-function AddBook() {
-  const [bookValue, setBookValue] = useState("");
-  const [authorValue, setAuthorValue] = useState("");
+// Reducer function to handle state updates
+const bookReducer = (state: any[], action: { type: string; payload?: any }) => {
+  switch (action.type) {
+    case "add":
+      return [...state, action.payload];
+    case "sort":
+      return [...state].sort((a, b) => a.title.localeCompare(b.title));
+    default:
+      return state;
+  }
+};
+
+function AddBook({ dispatch }: { dispatch: Function }) {
+  const inputBook = useRef<HTMLInputElement>(null);
+  const inputAuthor = useRef<HTMLInputElement>(null);
+
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!bookValue.trim() || !authorValue.trim()) {
-      return;
-    }
-    console.log(bookValue, authorValue);
-    setBookValue("");
-    setAuthorValue("");
+    const currBook = inputBook.current?.value.trim();
+    const currAuthor = inputAuthor.current?.value.trim();
+    if (!currBook || !currAuthor) return;
+
+    dispatch({
+      type: "add",
+      payload: { title: currBook, author: currAuthor },
+    });
+
+    inputBook.current!.value = "";
+    inputAuthor.current!.value = "";
   };
+
+  const handleSort = () => {
+    dispatch({ type: "sort" });
+  };
+
   return (
-    <form className="max-w-96 mx-auto mb-10" onSubmit={handleFormSubmit}>
-      <Input
-        type="text"
-        placeholder="Add a book"
-        className="mb-1 p-6"
-        onChange={(e) => setBookValue(e.target.value)}
-        value={bookValue}
-      />
-      <Input
-        type="text"
-        placeholder="Add author info"
-        className="mb-3 p-6"
-        onChange={(e) => setAuthorValue(e.target.value)}
-        value={authorValue}
-      />
-      <div className="flex gap-2">
-        <Button type="submit">
-          <Cross /> Add
-        </Button>
-        <Button type="submit" variant="secondary">
-          <ArrowDown10 /> Sort
-        </Button>
-      </div>
-    </form>
+    <div>
+      <form className="max-w-96 mx-auto mb-10" onSubmit={handleFormSubmit}>
+        <Input
+          type="text"
+          placeholder="Add a book"
+          className="mb-1 p-6"
+          ref={inputBook}
+        />
+        <Input
+          type="text"
+          placeholder="Add author info"
+          className="mb-3 p-6"
+          ref={inputAuthor}
+        />
+        <div className="flex gap-2">
+          <Button type="submit">
+            <Cross /> Add
+          </Button>
+          <Button variant="secondary" type="button" onClick={handleSort}>
+            <ArrowDown10 /> Sort
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 
