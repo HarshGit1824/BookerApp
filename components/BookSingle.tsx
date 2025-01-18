@@ -8,7 +8,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
-function BookSingle({ book, dispatch }: any) {
+interface BookSingleProps {
+  book: Book;
+  dispatch: React.Dispatch<Action>;
+}
+function BookSingle({ book, dispatch }: BookSingleProps) {
   return (
     <Card className="w-80">
       <CardHeader>

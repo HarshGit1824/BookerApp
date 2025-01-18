@@ -3,7 +3,6 @@ import { FormEvent, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowDown10, Cross } from "lucide-react";
-import { Action } from "@/lib/reducer";
 
 interface AddBookProps {
   dispatch: React.Dispatch<Action>;

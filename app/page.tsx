@@ -1,6 +1,5 @@
 "use client";
 
-import { Book } from "@/types/interfaces";
 import { initialBooks } from "@/lib/sampleData";
 import { useReducer } from "react";
 import { booksReducer } from "@/lib/reducer";

@@ -1,10 +1,3 @@
-import { Book } from "@/types/interfaces";
-export type Action =
-  | { type: "add"; payload: { title: string; author: string } }
-  | { type: "remove"; payload: string }
-  | { type: "like"; payload: string }
-  | { type: "dislike"; payload: string }
-  | { type: "sort" };
 export const booksReducer = (state: Book[], action: Action): Book[] => {
   switch (action.type) {
     case "add":

@@ -1,4 +1,3 @@
-import { Book } from "@/types/interfaces";
 export const initialBooks: Book[] = [
   {
     id: "1",

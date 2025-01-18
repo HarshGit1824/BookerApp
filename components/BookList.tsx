@@ -1,6 +1,5 @@
 import BookSingle from "@/components/BookSingle";
-import { Book } from "@/types/interfaces";
-import { Action } from "@/lib/reducer";
+
 
 interface BookListProps {
   books: Book[];
