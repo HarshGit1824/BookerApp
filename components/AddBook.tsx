@@ -21,14 +21,14 @@ function AddBook() {
       <Input
         type="text"
         placeholder="Add a book"
-        className="mb-1"
+        className="mb-1 p-6"
         onChange={(e) => setBookValue(e.target.value)}
         value={bookValue}
       />
       <Input
         type="text"
         placeholder="Add author info"
-        className="mb-3"
+        className="mb-3 p-6"
         onChange={(e) => setAuthorValue(e.target.value)}
         value={authorValue}
       />
