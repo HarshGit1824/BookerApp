@@ -1,22 +1,14 @@
 "use client";
-import {  FormEvent, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowDown10, Cross } from "lucide-react";
+import { Action } from "@/lib/reducer";
 
-// Reducer function to handle state updates
-const bookReducer = (state: any[], action: { type: string; payload?: any }) => {
-  switch (action.type) {
-    case "add":
-      return [...state, action.payload];
-    case "sort":
-      return [...state].sort((a, b) => a.title.localeCompare(b.title));
-    default:
-      return state;
-  }
-};
-
-function AddBook({ dispatch }: { dispatch: Function }) {
+interface AddBookProps {
+  dispatch: React.Dispatch<Action>;
+}
+function AddBook({ dispatch }: AddBookProps) {
   const inputBook = useRef<HTMLInputElement>(null);
   const inputAuthor = useRef<HTMLInputElement>(null);
 
@@ -24,6 +16,7 @@ function AddBook({ dispatch }: { dispatch: Function }) {
     e.preventDefault();
     const currBook = inputBook.current?.value.trim();
     const currAuthor = inputAuthor.current?.value.trim();
+
     if (!currBook || !currAuthor) return;
 
     dispatch({
@@ -31,10 +24,9 @@ function AddBook({ dispatch }: { dispatch: Function }) {
       payload: { title: currBook, author: currAuthor },
     });
 
-    inputBook.current!.value = "";
-    inputAuthor.current!.value = "";
+    if (inputBook.current) inputBook.current.value = "";
+    if (inputAuthor.current) inputAuthor.current.value = "";
   };
-
   const handleSort = () => {
     dispatch({ type: "sort" });
   };
