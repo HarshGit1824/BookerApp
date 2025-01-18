@@ -1,16 +1,29 @@
 "use client";
 
-import { initialBooks } from "@/lib/sampleData";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { booksReducer } from "@/lib/reducer";
 import { LampDemo } from "@/components/ui/lamp";
 import Header from "@/components/Header";
 import AddBook from "@/components/AddBook";
 import BookList from "@/components/BookList";
 
-function Home() {
-  const [books, dispatch] = useReducer(booksReducer, initialBooks as Book[]);
+// Helper function to get books from localStorage
+const getBooksFromLocalStorage = () => {
+  const savedBooks = localStorage.getItem("books");
+  return savedBooks ? JSON.parse(savedBooks) : [];
+};
+// Helper function to save books to localStorage
+const saveBooksToLocalStorage = (books: any[]) => {
+  localStorage.setItem("books", JSON.stringify(books));
+};
 
+function Home() {
+  const [books, dispatch] = useReducer(booksReducer, [], () =>
+    getBooksFromLocalStorage()
+  );
+  useEffect(() => {
+    saveBooksToLocalStorage(books);
+  }, [books]);
   return (
     <>
       <Header />
